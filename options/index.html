@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Jean-Philippe Paradis" />
+    <link rel="author" href="https://www.hexstreamsoft.com/introduction.html" />
+    <link rel="license" href="https://www.hexstreamsoft.com/UNLICENSE" />
+    <title>CLHS options</title>
+    <link href="../css/global.css" rel="stylesheet" type="text/css" />
+    <link href="../libraries/global.hexstreamsoft.com/css/homepage.css" rel="stylesheet" type="text/css" />
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <script src="../libraries/global.hexstreamsoft.com/scripts/global.js"></script>
+    <script src="../scripts/global.js"></script>
+    <script src="index.js"></script>
+  </head>
+
+  <body data-state-domain="extension-prefs">
+
+    <nav id="top-nav">
+
+      <div class="main">
+
+        <div class="breadcrumbs">
+          <a href="https://www.hexstreamsoft.com/">HexstreamSoft</a>
+        </div>
+
+        <nav class="tabs" id="meta-nav">
+          <ul>
+            <li><a class="github" href="https://github.com/Hexstream-not-yet-scavenged/clhs-chrome-extension/blob/master/options/index.html"><span>See on GitHub</span></a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <p id="last-updated"><span>This page was last updated on </span><time datetime="2019-09-03">3 september 2019</time><span>.</span></p>
+
+    </nav>
+
+    <main>
+
+      <form>
+        <table class="navtable contains-weightless-colgroups contains-sparse-colgroup feature_headers-xref" id="actions-table">
+          <colgroup class="weightless">
+            <col />
+          </colgroup>
+          <colgroup>
+            <col />
+          </colgroup>
+          <colgroup span="2" class="sparse"></colgroup>
+          <colgroup span="2" class="sparse"></colgroup>
+          <colgroup span="2" class="sparse"></colgroup>
+          <thead>
+            <tr>
+              <th colspan="2" class="chomp top left"></th>
+              <th colspan="6" class="chomp top left right" id="page-header-th">
+                <div id="page-header">
+                  <span>CLHS options</span>
+                </div>
+              </th>
+            </tr>
+            <tr>
+              <td rowspan="2" class="chomp top left bottom"></td>
+              <th class="ghost chomp top left" id="actions-table_current-tab-context">Active tab context</th>
+              <th colspan="2" class="non-clhs" id="actions-table_non-clhs" headers="actions-table_current-tab-context">Non-CLHS</th>
+              <th colspan="2" class="local-clhs" id="actions-table_local-clhs" headers="actions-table_current-tab-context">Local CLHS</th>
+              <th colspan="2" class="canonical-clhs" id="actions-table_canonical-clhs" headers="actions-table_current-tab-context">Canonical CLHS</th>
+            </tr>
+            <tr>
+              <th class="possible-action ghost chomp top left" id="possible-actions-header">Possible actions</th>
+              <template data-control="(map (self) (var context-names))" data-args="(context-name)">
+                <th class="(. (var context) name) default"
+                    id="actions-table_(. (var context) name)_default"
+                    headers="actions-table_(. (var context) name)">
+                  <span class="context_default_label">Default</span>
+                  <span class="test-column_label">Test</span>
+                </th>
+                <th class="(. (var context) name) menu-item"
+                    id="actions-table_(. (var context) name)_menu-item"
+                    headers="actions-table_(. (var context) name)">
+                  Menu
+                </th>
+              </template>
+            </tr>
+          </thead>
+          <tbody>
+            <template data-control="(map (self) (var actions))" data-args="(action)">
+              <tr data-action="(. (var action) name)">
+                <td class="keyboard-shortcut ghost chomp left noa">
+                  <template data-control="(when (=== (. (var action) name) perform-default-action)
+                                            (call (self)))">
+                    click on <img class="browser-action-icon" src="../images/h.png" alt="the CLHS Browser Action"/>, or
+                  </template>
+                  <var class="keyboard-shortcut" data-state-domain="chrome.keyboard-shortcuts" data-state-key="(. (var action) name)"></var>
+                </td>
+                <th class="possible-action noa (var needed-permissions)"
+                    id="possible-action_(. (var action) name)" headers="possible-actions-header"
+                    data-text-content="(. (var action) title)">
+                </th>
+                <template data-control="(map (lambda (context)
+                                               (call (named (if (. (var context) action-is-valid-in-context)
+                                                                valid
+                                                                invalid))))
+                                        (. (var action) contexts))">
+                  <template data-name="valid">
+                    <td class="default (var (. (var action) needed-permissions))"
+                        headers="actions-table_(. (var context) name)
+                                 actions-table_(. (var context) name)_default
+                                 possible-action_(. (var action) name)">
+                      <input type="radio" class="replaced" id="default-action_(. (var context) name)" name="default-action_(. (var context) name)"
+                             data-state-key="default-action_(. (var context) name)" data-state-value="(. (var action) name)"/>
+                      <label for="default-action_(. (var context) name)">&nbsp;</label>
+                      <button class="test-button">Test now</button>
+                    </td>
+                    <td class="menu-item
+                               (when (!== (. (var context) name) non-clhs)
+                                 needs-tabs-permission)
+                               (var needed-permissions)"
+                        headers="actions-table_(. (var context) name)
+                                 actions-table_(. (var context) name)_menu-item
+                                 possible-action_(. (var action) name)">
+                      <input type="checkbox" class="replaced" id="menu-item_(. (var context) name)_(. (var action) name)"
+                             data-state-key="menu-item_(. (var context) name)_(. (var action) name)" data-state-value="show" data-state-antivalue="hide" />
+                      <label for="menu-item_(. (var context) name)_(. (var action) name)">&nbsp;</label>
+                    </td>
+                  </template>
+                  <template data-name="invalid">
+                    <td colspan="2" class="not-applicable" headers="(let ((prefix actions-table_(. (var context) name)))
+                                                                      (join (var prefix)
+                                                                            (var prefix)_default
+                                                                            (var prefix)_menu-item))
+                                                                    possible-action_(. (var action) name)">
+                      ∅
+                    </td>
+                  </template>
+                </template>
+              </tr>
+            </template>
+            <tr data-action="perform-default-action">
+              <td class="keyboard-shortcut ghost chomp left noa">
+                click on <img class="browser-action-icon" src="../images/h.png" alt="the CLHS Browser Action"/>, or <var class="keyboard-shortcut" data-state-domain="chrome.keyboard-shortcuts" data-state-key="perform-default-action"></var>
+              </td>
+              <th class="possible-action noa" id="possible-action_perform-default-action" headers="possible-actions-header">Perform the default action</th>
+              <th class="non-clhs default test-default-action-th" headers="actions-table_non-clhs
+                                                                           actions-table_non-clhs_default
+                                                                           possible-action_perform-default-action">
+                <button class="test-button test-default-action">Test now</button>
+              </th>
+              <td colspan="5" class="local-clhs default not-applicable" headers="actions-table_local-clhs
+                                                                                 actions-table_local-clhs_default
+                                                                                 possible-action_perform-default-action">
+                ∅
+              </td>
+            </tr>
+            <tr>
+              <td class="keyboard-shortcut ghost chomp left bottom noa"></td>
+              <th class="chomp bottom left"></th>
+              <th headers="actions-table_non-clhs
+                           actions-table_non-clhs_default"
+                  id="test-mode-th">
+                <div id="test-mode">
+                  <input type="checkbox" class="replaced" id="test-mode-checkbox"
+                         data-state-domain="page-prefs" data-state-key="/options/test-mode/"
+                         data-state-value="true" data-state-antivalue="false"/>
+                  <label for="test-mode-checkbox">&nbsp;</label>
+                  <label for="test-mode-checkbox">Test mode</label>
+                </div>
+              </th>
+              <td colspan="5" class="chomp bottom right"></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+
+      <div id="options">
+
+        <section id="optional-features">
+          <h1>Optional features</h1>
+          <div>
+            <p>
+              Some features need the "tabs" permission to function.
+              <br />
+              Those are distinguished with a lock in the above table.</p>
+            <p>
+              <button id="grant-tabs-permission-button">Grant "tabs" permission</button>
+              <button id="revoke-tabs-permission-button">Revoke "tabs" permission</button>
+            </p>
+          </div>
+        </section>
+
+        <!--
+            <section id="action-event-log">
+              <h1>Action event log</h1>
+              <table>
+                <thead>
+                  <th>Invoker</th>
+                  <th>Active tab context</th>
+                  <th>Action performed</th>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </section>
+            -->
+
+      </div>
+
+    </main>
+
+    <footer id="footer">
+      <div class="main">
+        <p><em>Common Lisp HyperSpec™ is a trademark of LispWorks Ltd. This extension is not affiliated with LispWorks.</em></p>
+      </div>
+    </footer>
+
+  </body>
+
+</html>

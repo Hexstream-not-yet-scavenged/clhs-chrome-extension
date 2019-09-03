@@ -1,0 +1,59 @@
+{
+    "manifest_version": 2,
+    "name": "CLHS",
+    "version": "0.1",
+    "description": "Bundles a full and unmodified copy of the Common Lisp HyperSpec for fast local browsing, even when offline. This extension is not affiliated with LispWorks.",
+    "homepage_url": "https://browser-extensions.hexstreamsoft.com/clhs/",
+    "offline_enabled": true,
+    "permissions": ["activeTab", "contextMenus", "clipboardWrite"],
+    "optional_permissions": ["tabs"],
+    "icons": {
+        "128": "images/clhs.png"
+    },
+    "browser_action": {
+        "default_title": "Browse the CLHS",
+        "default_icon": {"19": "images/h.png" }
+    },
+    "commands": {
+        "perform-default-action": {
+            "description": "Perform the default action",
+            "suggested_key": {
+                "default": "Ctrl+Shift+H"
+            }
+        },
+        "new-tab-local-index": {
+            "description": "New tab: Local CLHS index"
+        },
+        "new-tab-canonical-index": {
+            "description": "New tab: Canonical CLHS index"
+        },
+        "copy-to-clipboard-canonical-url": {
+            "description": "Copy to clipboard: Canonical URL",
+            "suggested_key": {
+                "default": "Ctrl+Shift+C"
+            }
+        },
+        "focus-or-open-local": {
+            "description": "Focus or open: Local CLHS"
+        },
+        "focus-or-open-canonical": {
+            "description": "Focus or open: Canonical CLHS"
+        },
+        "go-to-local": {
+            "description": "Go to: Local CLHS"
+        },
+        "go-to-canonical": {
+            "description": "Go to: Canonical CLHS"
+        }
+    },
+    "background": {
+        "scripts": ["libraries/global.hexstreamsoft.com/scripts/global.js",
+                    "scripts/global.js",
+                    "scripts/event-page.js"],
+        "persistent": false
+    },
+    "options_ui": {
+        "page": "options/index.html",
+        "open_in_tab": true
+    }
+}

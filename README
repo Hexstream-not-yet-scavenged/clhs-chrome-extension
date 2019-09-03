@@ -1,0 +1,22 @@
+INCOMPLETE. BROKEN. ABANDONED.
+
+
+Bundles a full and unmodified copy of the Common Lisp HyperSpec
+for fast local browsing, even when offline.
+
+This extension is not affiliated with LispWorks.
+
+
+Although the final release would include the CLHS, this repository does not include it.
+You need to extract or symlink the HyperSpec-7-0 directory at the root of the project.
+You also need to extract or symlink global.hexstreamsoft.com in libraries/global.hexstreamsoft.com/.
+You also need to manually install 2 images in the images directory, see README there for details.
+
+Things will be quite broken anyway, though. I don't have time to revisit and fix this codebase.
+
+
+See here for 2 interesting screenshots: https://twitter.com/HexstreamSoft/status/783910778462167040
+
+
+This browser extension is in the Public Domain.
+See the UNLICENSE file for details.

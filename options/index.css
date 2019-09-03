@@ -1,0 +1,211 @@
+body {
+    overflow-x: initial;
+}
+
+#page-header {
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+#page-header span {
+    font-size: 3em;
+    letter-spacing: 0.1em;
+}
+
+#page-header-th:hover {
+    text-decoration: none;
+}
+
+table {
+    font-size: larger;
+    /* TODO: Dynamic and accurate. */
+    left: -6em;
+}
+
+table td.keyboard-shortcut {
+    white-space: nowrap;
+}
+
+table th:hover {
+    text-decoration: underline;
+}
+
+.test-default-action-th {
+    text-decoration: none;
+}
+
+table th[data-dynamic-context~="parent-of-focussed"], table th[data-dynamic-context~="parent-of-hovered"] {
+    color: teal;
+}
+
+table th[data-dynamic-context~="child-of-focussed"], table th[data-dynamic-context~="child-of-hovered"],
+table td[data-dynamic-context~="child-of-focussed"], table td[data-dynamic-context~="child-of-hovered"] {
+    background-image: url("dependent-background.svg"), url("dependent-background.svg"), url("dependent-background.svg"), url("dependent-background.svg");
+    background-position: 50% 0%, 50% 100%, 0% 50%, 100% 50%;
+    background-size: auto 0.2em, auto 0.2em, 0.2em auto, 0.2em auto;
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+}
+
+table th.needs-tabs-permission[data-dynamic-context~="child-of-focussed"], table th.needs-tabs-permission[data-dynamic-context~="child-of-hovered"],
+table td.needs-tabs-permission[data-dynamic-context~="child-of-focussed"], table td.needs-tabs-permission[data-dynamic-context~="child-of-hovered"] {
+    background-image: url("dependent-background.svg"), url("dependent-background.svg"), url("dependent-background.svg"), url("dependent-background.svg"), url("../css/images/locked-padlock.svg");
+    background-position: 50% 0%, 50% 100%, 0% 50%, 100% 50%, right 0.1em bottom 0.1em;
+    background-size: auto 0.2em, auto 0.2em, 0.2em auto, 0.2em auto, 0.6em;
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y, no-repeat;
+}
+
+body.tabs\=granted table th.needs-tabs-permission[data-dynamic-context~="child-of-focussed"], body.tabs\=granted table th.needs-tabs-permission[data-dynamic-context~="child-of-hovered"],
+body.tabs\=granted table td.needs-tabs-permission[data-dynamic-context~="child-of-focussed"], body.tabs\=granted table td.needs-tabs-permission[data-dynamic-context~="child-of-hovered"] {
+    background-image: url("dependent-background.svg"), url("dependent-background.svg"), url("dependent-background.svg"), url("dependent-background.svg");
+    background-position: 50% 0%, 50% 100%, 0% 50%, 100% 50%;
+    background-size: auto 0.2em, auto 0.2em, 0.2em auto, 0.2em auto;
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+}
+
+
+table .chomp {
+    background: white;
+}
+
+table thead th.possible-action, table tbody th.possible-action, #possible-actions-header {
+    text-align: left;
+}
+
+.non-clhs, .local-clhs, .canonical-clhs {
+    text-align: center;
+}
+
+body.\/options\/test-mode\/\=true .context_default_label {
+    display: none;
+}
+
+.test-column_label {
+    display: none;
+}
+
+body.\/options\/test-mode\/\=true .test-column_label {
+    display: inline;
+}
+
+body.\/options\/test-mode\/\=true td.default label {
+    display: none;
+}
+
+button {
+    padding: 0.4em 0.6em;
+}
+
+.test-button {
+    display: none;
+    margin: 0 0.45em;
+}
+
+.test-button:hover {
+    text-decoration: underline;
+}
+
+.test-default-action, body.\/options\/test-mode\/\=true .test-button {
+    display: block;
+}
+
+#test-mode-th {
+    text-decoration: none;
+}
+
+#test-mode {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+    font-weight: normal;
+    margin: 0 auto;
+}
+
+#test-mode > * {
+    padding: 0.6em 0;
+}
+
+#test-mode-checkbox + label {
+    width: 1em;
+    height: 1em;
+    padding-right: 0.2em;
+}
+
+.browser-action-icon {
+    vertical-align: middle;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+}
+
+th.needs-tabs-permission, td.needs-tabs-permission {
+    background-image: url("../css/images/locked-padlock.svg");
+    background-repeat: no-repeat;
+    background-position: right 0.1em bottom 0.1em;
+    background-size: 0.6em;
+}
+
+.navtable thead th.menu-item {
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+}
+
+body.tabs\=granted th.needs-tabs-permission, body.tabs\=granted td.needs-tabs-permission {
+    background-image: none;
+}
+
+
+
+#options {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+#options > section {
+    margin: 1em;
+}
+
+#options > section > h1 {
+    margin-top: 0;
+    font-family: "Kaushan Script", serif;
+    font-size: 2.25em;
+}
+
+#options > section > div > * {
+    margin-left: 0.3em;
+}
+
+#optional-features h1 {
+    display: table;
+    padding-right: 1.4em;
+    background-image: url("../css/images/locked-padlock.svg");
+    background-repeat: no-repeat;
+    background-position: right 0 bottom 0.3em;
+    background-size: 0.9em;
+    background-origin: border-box;
+}
+
+body.tabs\=granted #optional-features h1 {
+    background-image: none;
+}
+
+body.tabs\=granted #grant-tabs-permission-button, #revoke-tabs-permission-button {
+    display: none;
+}
+
+body.tabs\=granted #revoke-tabs-permission-button {
+    display: inline;
+}
+
+
+
+#footer {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+#footer p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
